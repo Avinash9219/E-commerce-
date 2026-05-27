@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOJ - Box of Joy | Premium Customized Gifts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-jQDF0VBwyLTHjGKkDg37z8f6D3iMwzG9L+GJiQO2vV1zHAYP6ZtjBMJwyogxWlY0Wsd25LSPwZ7WwtlZC0VhHw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/premium.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <header class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#home" class="navbar-brand">
+                <img src="assets/logo.jpeg" alt="BOJ logo">
+                <div>
+                    <div style="font-size: 1.125rem;">Box of Joy</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">Premium Gifts</div>
+                </div>
+            </a>
+
+            <nav class="navbar-nav">
+                <a href="#home" onclick="scrollToSection('home'); return false;">Home</a>
+                <a href="#featured" onclick="scrollToSection('featured'); return false;">Products</a>
+                <a href="#services" onclick="scrollToSection('services'); return false;">Services</a>
+                <a href="#reviews" onclick="scrollToSection('reviews'); return false;">Reviews</a>
+                <a href="#contact" onclick="scrollToSection('contact'); return false;">Contact</a>
+            </nav>
+
+            <div class="navbar-actions">
+                <button class="icon-btn" onclick="document.getElementById('searchInput').focus();" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="icon-btn" aria-label="Open cart" onclick="toggleCart();">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+                <a href="admin.html" class="icon-btn" aria-label="Admin panel" title="Admin">
+                    <i class="fas fa-cog"></i>
+                </a>
+                <button class="icon-btn mobile-menu-toggle" id="mobileMenuBtn" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="mobile-menu-close" onclick="closeMobileMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+            <nav class="mobile-menu-nav">
+                <a href="#home" onclick="scrollToSection('home'); closeMobileMenu(); return false;">Home</a>
+                <a href="#featured" onclick="scrollToSection('featured'); closeMobileMenu(); return false;">Products</a>
+                <a href="#services" onclick="scrollToSection('services'); closeMobileMenu(); return false;">Services</a>
+                <a href="#reviews" onclick="scrollToSection('reviews'); closeMobileMenu(); return false;">Reviews</a>
+                <a href="#contact" onclick="scrollToSection('contact'); closeMobileMenu(); return false;">Contact</a>
+                <a href="admin.html">Admin Panel</a>
+            </nav>
+        </div>
+
+        <div class="category-bar" id="categoryBar">
+            <div class="category-list" id="categoryList"></div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="eyebrow">✨ Premium Customized Gifts</div>
+                        <h1>Celebrate Every Moment<br><span class="text-gradient">With Personal Touch</span></h1>
+                        <p>Exquisite personalized gifts curated for birthdays, anniversaries, corporate events, and life's precious moments. Handcrafted excellence meets digital precision.</p>
+                        
+                        <div class="hero-cta">
+                            <button class="btn btn-primary" onclick="scrollToSection('featured')">
+                                <i class="fas fa-shopping-bag"></i> Shop Hampers
+                            </button>
+                            <button class="btn btn-secondary" onclick="document.getElementById('whatsappBtn').click();">
+                                <i class="fab fa-whatsapp"></i> Quick Inquiry
+                            </button>
+                            <button class="btn btn-ghost" onclick="scrollToSection('services')">
+                                Learn More <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); margin-top: var(--spacing-2xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-color);">
+                            <div>
+                                <div style="color: var(--accent-primary); font-weight: 700; font-size: 1.5rem;">24-48 hrs</div>
+                                <p style="font-size: 0.875rem;">Express Delivery</p>
+                            </div>
+                            <div>
+                                <div style="color: var(--accent-secondary); font-weight: 700; font-size: 1.5rem;">100% Custom</div>
+                                <p style="font-size: 0.875rem;">Design Support Included</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-visual">
+                        <img class="hero-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Premium customized gifts">
+                        <div class="hero-badge">
+                            <p>Premium Verified</p>
+                            <strong>⭐ 4.9/5 Stars</strong>
+                            <p style="font-size: 0.75rem; margin-top: 4px;">1200+ Happy Customers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section style="background: rgba(255, 107, 107, 0.05); padding: var(--spacing-2xl) 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="grid grid-4">
+                    <div class="flex-center" style="flex-direction: column; text-align: center; gap: var(--spacing-md);">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-primary);">5K+</div>
+                        <p class="text-muted">Happy Customers</p>
+                    </div>
+                    <div class="flex-center" style="flex-direction: column; text-align: center; gap: var(--spacing-md);">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-secondary);">16+</div>
+                        <p class="text-muted">Product Categories</p>
+                    </div>
+                    <div class="flex-center" style="flex-direction: column; text-align: center; gap: var(--spacing-md);">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-tertiary);">24h</div>
+                        <p class="text-muted">Express Delivery</p>
+                    </div>
+                    <div class="flex-center" style="flex-direction: column; text-align: center; gap: var(--spacing-md);">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-gold);">100%</div>
+                        <p class="text-muted">Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section class="section" id="featured">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Featured Collection</span>
+                    <h2>Luxury Hampers & Gifts</h2>
+                    <p class="text-muted" style="max-width: 500px; margin: var(--spacing-lg) auto 0;">Curated selection of premium personalized gifts for every celebration. Each piece crafted with precision and care.</p>
+                </div>
+                
+                <div class="flex-center" style="gap: var(--spacing-md); margin-bottom: var(--spacing-2xl); flex-wrap: wrap;">
+                    <button class="hamper-tab-btn active" data-filter="all" onclick="filterProducts('all', this)">All Products</button>
+                    <button class="hamper-tab-btn" data-filter="hamper" onclick="filterProducts('hamper', this)">Hampers</button>
+                    <button class="hamper-tab-btn" data-filter="magic-mug" onclick="filterProducts('magic-mug', this)">Magic Mugs</button>
+                    <button class="hamper-tab-btn" data-filter="photo-frame" onclick="filterProducts('photo-frame', this)">Photo Frames</button>
+                    <button class="hamper-tab-btn" data-filter="t-shirt" onclick="filterProducts('t-shirt', this)">T-Shirts</button>
+                </div>
+
+                <div class="grid grid-4" id="productGrid"></div>
+            </div>
+        </section>
+
+        <section class="section" id="services">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Our Services</span>
+                    <h2>Complete Gifting Solutions</h2>
+                </div>
+                
+                <div class="grid grid-3" id="serviceGrid"></div>
+            </div>
+        </section>
+
+        <section class="custom-order-block" id="customOrder">
+            <div class="section-header">
+                <div>
+                    <span class="section-label">Custom Order</span>
+                    <h2>Share your vision. We’ll create the perfect gift.</h2>
+                </div>
+            </div>
+            <div class="custom-grid">
+                <div class="custom-info">
+                    <h3>How it works</h3>
+                    <p>Choose your product, upload a design or tell us your personalization details, and our creative team will make it premium.</p>
+                    <div class="custom-list">
+                        <div><i class="fas fa-upload"></i><span>Upload your design</span></div>
+                        <div><i class="fas fa-pencil-alt"></i><span>Describe your personal message</span></div>
+                        <div><i class="fas fa-star"></i><span>Review your preview draft</span></div>
+                    </div>
+                </div>
+                <form class="custom-form" id="customOrderForm">
+                    <label>
+                        Select product
+                        <select id="customProduct" required>
+                            <option value="Magic Mug">Magic Mug</option>
+                            <option value="Normal Mug">Normal Mug</option>
+                            <option value="Photo Frame">Photo Frame</option>
+                            <option value="Cushion">Cushion</option>
+                            <option value="T-Shirt">T-Shirt</option>
+                            <option value="Phone Case">Phone Case</option>
+                        </select>
+                    </label>
+                    <label>
+                        Upload design
+                        <input id="designUpload" type="file" accept="image/*">
+                    </label>
+                    <label>
+                        Personalization notes
+                        <textarea id="customNotes" rows="5" placeholder="Photo, name, logo, special occasion..."></textarea>
+                    </label>
+                    <button class="btn btn-primary" type="submit">Request Custom Order</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="section-block reviews-block" id="reviews">
+            <div class="section-header">
+                <div>
+                    <span class="section-label">Customer Reviews</span>
+                    <h2>Trusted by customers for memorable gifting.</h2>
+                </div>
+            </div>
+            <div class="reviews-grid" id="reviewsGrid"></div>
+            <div class="review-form-card">
+                <h3>Share your BOJ experience</h3>
+                <form id="reviewForm" class="review-form">
+                    <div class="form-row">
+                        <input id="reviewName" type="text" placeholder="Your name" required>
+                        <select id="reviewRating" aria-label="Review rating" required>
+                            <option value="5">★★★★★ 5</option>
+                            <option value="4">★★★★ 4</option>
+                            <option value="3">★★★ 3</option>
+                            <option value="2">★★ 2</option>
+                            <option value="1">★ 1</option>
+                        </select>
+                    </div>
+                    <textarea id="reviewMessage" rows="4" placeholder="Your review..." required></textarea>
+                    <button class="btn btn-secondary" type="submit">Submit Review</button>
+                    <p class="form-feedback" id="reviewFeedback"></p>
+                </form>
+            </div>
+        </section>
+
+        <section class="section-block contact-block" id="contact">
+            <div class="section-header">
+                <div>
+                    <span class="section-label">Contact BOJ</span>
+                    <h2>Let’s bring your gift idea to life.</h2>
+                </div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info-card">
+                    <h3>Need help choosing?</h3>
+                    <p>Our design team is ready to assist with premium proofs, bulk branding, and special event gifting.</p>
+                    <div class="contact-details">
+                        <div><i class="fas fa-envelope"></i><span>support@bojgifts.com</span></div>
+                        <div><i class="fas fa-phone-alt"></i><span>+1 925 536 0036</span></div>
+                        <div><i class="fas fa-map-marker-alt"></i><span>123 Gift Street, New York, NY</span></div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <label>
+                        Name
+                        <input id="contactName" type="text" placeholder="Your name" required>
+                    </label>
+                    <label>
+                        Email
+                        <input id="contactEmail" type="email" placeholder="you@example.com" required>
+                    </label>
+                    <label>
+                        Message
+                        <textarea id="contactMessage" rows="5" placeholder="Tell us about your custom order or gift idea" required></textarea>
+                    </label>
+                    <button class="btn btn-primary" type="submit">Send Message</button>
+                    <p class="form-feedback" id="contactFeedback"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div>
+                <h3>BOJ - Box of Joy</h3>
+                <p>Premium customized printing & gift store for personal, couple, and corporate celebrations.</p>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h4>Quick links</h4>
+                    <a href="#featured" onclick="scrollToSection('featured'); return false;">Products</a>
+                    <a href="#services" onclick="scrollToSection('services'); return false;">Services</a>
+                    <a href="#customOrder" onclick="scrollToSection('customOrder'); return false;">Custom Order</a>
+                </div>
+                <div>
+                    <h4>Social</h4>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i> Pinterest</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BOJ - Box of Joy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+        <div class="drawer-panel">
+            <div class="drawer-header">
+                <h2>Your Cart</h2>
+                <button class="icon-btn drawer-close" aria-label="Close cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="drawer-body" id="cartItems">
+                <p class="empty-message">Your cart is empty. Start adding premium gifts.</p>
+            </div>
+            <div class="drawer-footer">
+                <div class="cart-summary">
+                    <span>Total</span>
+                    <strong id="cartTotal">$0.00</strong>
+                </div>
+                <button class="btn btn-primary" onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="drawerOverlay" onclick="toggleCart()"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

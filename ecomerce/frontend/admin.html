@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | Box of Joy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/premium.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <div class="admin-shell">
+    <header class="admin-header" style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 142, 83, 0.05)); border-bottom: 1px solid rgba(255, 107, 107, 0.2); padding: var(--spacing-2xl); backdrop-filter: blur(10px);">
+      <div>
+        <p class="eyebrow" style="color: var(--accent-primary); font-size: var(--font-size-sm); font-weight: 700; letter-spacing: 0.05em; margin-bottom: var(--spacing-md);">ADMIN PORTAL</p>
+        <h1 style="font-size: var(--font-size-2xl); margin: 0;">Box of Joy Content Manager</h1>
+      </div>
+      <button id="adminLogout" class="btn btn-secondary" type="button">Logout</button>
+    </header>
+
+    <div id="statusMessage" class="status info" style="margin: var(--spacing-lg) var(--spacing-xl); padding: var(--spacing-md) var(--spacing-lg); border-radius: 12px; border-left: 4px solid var(--accent-primary);">Please login to access admin tools.</div>
+
+    <section id="adminLogin" class="admin-panel" style="padding: var(--spacing-2xl);">
+      <div style="max-width: 500px; margin: 0 auto;">
+        <div style="margin-bottom: var(--spacing-2xl);">
+          <p style="color: var(--accent-primary); font-size: var(--font-size-sm); font-weight: 700; letter-spacing: 0.05em; margin-bottom: var(--spacing-md);">ADMIN PORTAL</p>
+          <h2 style="margin-bottom: var(--spacing-sm);">Content Manager</h2>
+          <p class="text-muted">Enter your admin credentials to manage products and orders.</p>
+        </div>
+        <form class="form-group" style="border: 1px solid rgba(255, 107, 107, 0.2); border-radius: 16px; padding: var(--spacing-xl); background: rgba(26, 26, 26, 0.5);">
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input id="loginEmail" class="form-input" type="email" placeholder="admin@boxofjoy.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input id="loginPassword" class="form-input" type="password" placeholder="Your secure password" required />
+          </div>
+          <div class="form-group" style="margin-top: var(--spacing-xl);">
+            <button id="adminLoginButton" class="btn btn-primary" style="width: 100%;" type="button">Sign In</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="adminPanel" class="admin-panel" style="display:none; padding: var(--spacing-xl);">
+      <nav class="admin-nav" style="display: flex; gap: var(--spacing-md); border-bottom: 1px solid rgba(255, 107, 107, 0.1); margin-bottom: var(--spacing-2xl); flex-wrap: wrap;">
+        <button id="tabDashboard" data-tab="dashboard" class="active" style="padding: var(--spacing-md) var(--spacing-lg); background: none; border: none; color: var(--accent-primary); font-weight: 600; cursor: pointer; border-bottom: 2px solid var(--accent-primary); margin-bottom: -1px;">Dashboard</button>
+        <button id="tabProducts" data-tab="products" style="padding: var(--spacing-md) var(--spacing-lg); background: none; border: none; color: var(--text-secondary); font-weight: 600; cursor: pointer; transition: color var(--transition-base);" onclick="this.style.color='var(--accent-primary)'; this.style.borderBottom='2px solid var(--accent-primary)'; this.style.marginBottom='-1px';">Products</button>
+        <button id="tabHampers" data-tab="hampers" style="padding: var(--spacing-md) var(--spacing-lg); background: none; border: none; color: var(--text-secondary); font-weight: 600; cursor: pointer; transition: color var(--transition-base);">Hampers</button>
+        <button id="tabOrders" data-tab="orders" style="padding: var(--spacing-md) var(--spacing-lg); background: none; border: none; color: var(--text-secondary); font-weight: 600; cursor: pointer; transition: color var(--transition-base);">Orders</button>
+      </nav>
+
+      <section class="admin-panel-section" data-tab="dashboard" style="display:block;">
+        <h2 style="font-size: var(--font-size-xl); margin-bottom: var(--spacing-lg);">Overview</h2>
+        <div id="dashboardStats" class="grid grid-4" style="gap: var(--spacing-lg);"></div>
+      </section>
+
+      <section class="admin-panel-section" data-tab="products" style="display:none;">
+        <div class="panel-head" style="margin-bottom: var(--spacing-2xl);">
+          <h2 style="font-size: var(--font-size-xl); margin-bottom: var(--spacing-sm);">Products</h2>
+          <p class="text-muted">Manage product catalog, pricing, categories, and images.</p>
+        </div>
+
+        <div class="card" style="overflow-x: auto;">
+          <table class="admin-table" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid rgba(255, 107, 107, 0.1); background: rgba(26, 26, 26, 0.5);">
+                <th style="padding: var(--spacing-md); text-align: left; font-weight: 600; color: var(--accent-primary);">Name</th>
+                <th style="padding: var(--spacing-md); text-align: left; font-weight: 600; color: var(--accent-primary);">Category</th>
+                <th style="padding: var(--spacing-md); text-align: left; font-weight: 600; color: var(--accent-primary);">Price</th>
+                <th style="padding: var(--spacing-md); text-align: left; font-weight: 600; color: var(--accent-primary);">Image</th>
+                <th style="padding: var(--spacing-md); text-align: left; font-weight: 600; color: var(--accent-primary);">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="productTableBody"></tbody>
+          </table>
+        </div>
+
+        <section id="productFormSection" class="card" style="padding: var(--spacing-xl); margin-top: var(--spacing-xl);">
+          <h3 id="productFormTitle" style="margin-bottom: var(--spacing-lg);">Create Product</h3>
+          <form id="productForm">
+            <div class="form-group">
+              <label class="form-label">Product Name</label>
+              <input name="name" class="form-input" placeholder="e.g., Magic Mug" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <input name="category" class="form-input" placeholder="e.g., Mugs" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Price ($)</label>
+              <input type="number" name="price" class="form-input" step="0.01" placeholder="29.99" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <textarea name="description" class="form-input" rows="4" placeholder="Product description..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Image URL</label>
+              <input id="productImagePath" name="imagePath" class="form-input" placeholder="https://..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Upload Image</label>
+              <input id="productImageUpload" type="file" class="form-input" accept="image/*" />
+            </div>
+            <div class="form-group">
+              <img id="productImagePreview" class="preview-img" src="assets/product-placeholder.png" alt="Preview" style="max-width: 150px; border-radius: 12px; margin-top: var(--spacing-md);" />
+            </div>
+            <div style="display: flex; gap: var(--spacing-md); margin-top: var(--spacing-xl);">
+              <button class="btn btn-secondary" type="reset">Reset</button>
+              <button class="btn btn-primary" type="submit">Save Product</button>
+            </div>
+          </form>
+        </section>
+      </section>
+
+      <section class="admin-panel-section" data-tab="hampers" style="display:none;">
+        <div class="panel-head" style="margin-bottom: var(--spacing-2xl);">
+          <h2 style="font-size: var(--font-size-xl); margin-bottom: var(--spacing-sm);">Hampers</h2>
+          <p class="text-muted">Configure birthday and anniversary hamper templates.</p>
+        </div>
+
+        <div class="card" style="overflow-x: auto;">
+          <table class="admin-table" style="width: 100%; border-collapse: collapse;">
+            <thead>
+              <tr style="border-bottom: 2px solid rgba(255, 107, 107, 0.1); background: rgba(26, 26, 26, 0.5);">
+                <th style="padding: var(--spacing-md); text-align: left; font-weight: 600; color: var(--accent-primary);">Title</th>
+                <th style="padding: var(--spacing-md); text-align: left; font-weight: 600; color: var(--accent-primary);">Type</th>
+                <th style="padding: var(--spacing-md); text-align: left; font-weight: 600; color: var(--accent-primary);">Price</th>
+                <th style="padding: var(--spacing-md); text-align: left; font-weight: 600; color: var(--accent-primary);">Image</th>
+                <th style="padding: var(--spacing-md); text-align: left; font-weight: 600; color: var(--accent-primary);">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="hamperTableBody"></tbody>
+          </table>
+        </div>
+
+        <section id="hamperFormSection" class="card" style="padding: var(--spacing-xl); margin-top: var(--spacing-xl);">
+          <h3 id="hamperFormTitle" style="margin-bottom: var(--spacing-lg);">Create Hamper Template</h3>
+          <form id="hamperForm">
+            <div class="form-group">
+              <label class="form-label">Hamper Type</label>
+              <select name="type" class="form-input">
+                <option value="birthday">Birthday</option>
+                <option value="anniversary">Anniversary</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Hamper Title</label>
+              <input name="title" class="form-input" placeholder="e.g., Romantic Birthday Surprise" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea name="message" class="form-input" rows="3" placeholder="Gift message..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Theme</label>
+              <select name="theme" class="form-input">
+                <option value="classic">Classic</option>
+                <option value="romantic">Romantic</option>
+                <option value="vibrant">Vibrant</option>
+                <option value="elegant">Elegant</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Accent Color</label>
+              <input type="color" name="color" class="form-input" value="#ff6b6b" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Special Instructions</label>
+              <textarea name="specialInstructions" class="form-input" rows="2" placeholder="Any special instructions..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Image URL</label>
+              <input id="hamperImagePath" name="imagePath" class="form-input" placeholder="https://..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Upload Image</label>
+              <input id="hamperImageUpload" type="file" class="form-input" accept="image/*" />
+            </div>
+            <div class="form-group">
+              <img id="hamperImagePreview" class="preview-img" src="assets/birthday-card.png" alt="Preview" style="max-width: 150px; border-radius: 12px; margin-top: var(--spacing-md);" />
+            </div>
+            <div class="form-group" style="border-top: 1px solid rgba(255, 107, 107, 0.1); padding-top: var(--spacing-lg);">
+              <label class="form-label">Add Products to Hamper</label>
+              <div style="display: flex; gap: var(--spacing-md); margin-top: var(--spacing-md);">
+                <select id="hamperProductSelect" class="form-input" style="flex: 1;"></select>
+                <button id="addHamperItemBtn" class="btn btn-secondary" type="button" style="white-space: nowrap;">Add Item</button>
+              </div>
+            </div>
+            <div id="hamperItems" style="margin-top: var(--spacing-lg);"></div>
+            <div style="display: flex; gap: var(--spacing-md); margin-top: var(--spacing-xl);">
+              <button class="btn btn-secondary" type="reset">Reset</button>
+              <button class="btn btn-primary" type="submit">Save Hamper</button>
+            </div>
+          </form>
+        </section>
+      </section>
+
+      <section class="admin-panel-section" data-tab="orders" style="display:none;">
+        <div class="panel-head">
+          <h2 style="font-size: var(--font-size-xl); margin-bottom: var(--spacing-sm);">Orders</h2>
+          <p class="text-muted">Live order list is available via the backend API.</p>
+          <p class="text-muted" style="font-size: var(--font-size-sm); margin-top: var(--spacing-md);">Order management will be added soon.</p>
+        </div>
+      </section>
+    </section>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,660 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOJ - Box of Joy | Premium Customized Gifts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/premium.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#home" class="navbar-brand">
+                <img src="assets/logo.jpeg" alt="BOJ logo">
+                <div>
+                    <div style="font-size: 1.125rem;">Box of Joy</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">Premium Gifts</div>
+                </div>
+            </a>
+
+            <nav class="navbar-nav">
+                <a href="#home" onclick="scrollToSection('home'); return false;">Home</a>
+                <a href="#featured" onclick="scrollToSection('featured'); return false;">Products</a>
+                <a href="#hamperBuilder" onclick="scrollToSection('hamperBuilder'); return false;">Hamper Builder</a>
+                <a href="#order" onclick="scrollToSection('order'); return false;">Order</a>
+                <a href="#services" onclick="scrollToSection('services'); return false;">Services</a>
+                <a href="#reviews" onclick="scrollToSection('reviews'); return false;">Reviews</a>
+                <a href="#contact" onclick="scrollToSection('contact'); return false;">Contact</a>
+            </nav>
+
+            <div class="navbar-search">
+                <input id="searchInput" type="search" placeholder="Search premium gifts..." aria-label="Search products" />
+            </div>
+
+            <div class="navbar-actions">
+                <button class="icon-btn" onclick="document.getElementById('searchInput').focus();" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="icon-btn" aria-label="Open cart" onclick="toggleCart();">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </button>
+                <a href="admin.html" class="icon-btn" aria-label="Admin panel" title="Admin">
+                    <i class="fas fa-cog"></i>
+                </a>
+                <button class="icon-btn mobile-menu-toggle" id="mobileMenuBtn" aria-label="Open menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="mobile-menu-close" onclick="closeMobileMenu()">
+                <i class="fas fa-times"></i>
+            </button>
+            <nav class="mobile-menu-nav">
+                <a href="#home" onclick="scrollToSection('home'); closeMobileMenu(); return false;">Home</a>
+                <a href="#featured" onclick="scrollToSection('featured'); closeMobileMenu(); return false;">Products</a>
+                <a href="#hamperBuilder" onclick="scrollToSection('hamperBuilder'); closeMobileMenu(); return false;">Hamper Builder</a>
+                <a href="#order" onclick="scrollToSection('order'); closeMobileMenu(); return false;">Order</a>
+                <a href="#services" onclick="scrollToSection('services'); closeMobileMenu(); return false;">Services</a>
+                <a href="#reviews" onclick="scrollToSection('reviews'); closeMobileMenu(); return false;">Reviews</a>
+                <a href="#contact" onclick="scrollToSection('contact'); closeMobileMenu(); return false;">Contact</a>
+                <a href="admin.html">Admin Panel</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="eyebrow">✨ Premium Customized Gifts</div>
+                        <h1>Celebrate Every Moment<br><span class="text-gradient">With Personal Touch</span></h1>
+                        <p>Exquisite personalized gifts curated for birthdays, anniversaries, corporate events, and life's precious moments. Handcrafted excellence meets digital precision.</p>
+                        
+                        <div class="hero-cta">
+                            <button class="btn btn-primary" onclick="scrollToSection('featured')">
+                                <i class="fas fa-shopping-bag"></i> Shop Now
+                            </button>
+                            <button class="btn btn-secondary" onclick="scrollToSection('hamperBuilder')">
+                                <i class="fas fa-wand-magic-sparkles"></i> Customize Hamper
+                            </button>
+                            <button class="btn btn-ghost" onclick="document.getElementById('whatsappBtn').click();">
+                                <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                            </button>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); margin-top: var(--spacing-2xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-color);">
+                            <div>
+                                <div style="color: var(--accent-primary); font-weight: 700; font-size: 1.5rem;">24-48 hrs</div>
+                                <p style="font-size: 0.875rem;">Express Delivery</p>
+                            </div>
+                            <div>
+                                <div style="color: var(--accent-secondary); font-weight: 700; font-size: 1.5rem;">100% Custom</div>
+                                <p style="font-size: 0.875rem;">Design Support Included</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-visual">
+                        <img class="hero-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Premium customized gifts">
+                        <div class="hero-badge">
+                            <p>Premium Verified</p>
+                            <strong>⭐ 4.9/5 Stars</strong>
+                            <p style="font-size: 0.75rem; margin-top: 4px;">1200+ Happy Customers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section style="background: rgba(255, 107, 107, 0.05); padding: var(--spacing-2xl) 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="grid grid-4">
+                    <div class="flex-center" style="flex-direction: column; text-align: center; gap: var(--spacing-md);">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-primary);">5K+</div>
+                        <p class="text-muted">Happy Customers</p>
+                    </div>
+                    <div class="flex-center" style="flex-direction: column; text-align: center; gap: var(--spacing-md);">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-secondary);">16+</div>
+                        <p class="text-muted">Product Categories</p>
+                    </div>
+                    <div class="flex-center" style="flex-direction: column; text-align: center; gap: var(--spacing-md);">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-tertiary);">24h</div>
+                        <p class="text-muted">Express Delivery</p>
+                    </div>
+                    <div class="flex-center" style="flex-direction: column; text-align: center; gap: var(--spacing-md);">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent-gold);">100%</div>
+                        <p class="text-muted">Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section class="section" id="featured">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Featured Collection</span>
+                    <h2>Luxury Hampers & Gifts</h2>
+                    <p class="text-muted" style="max-width: 500px; margin: var(--spacing-lg) auto 0;">Curated selection of premium personalized gifts for every celebration. Each piece crafted with precision and care.</p>
+                </div>
+                
+                <div class="flex-center" style="gap: var(--spacing-md); margin-bottom: var(--spacing-2xl); flex-wrap: wrap;">
+                    <button class="hamper-tab-btn active" data-filter="all" onclick="filterProducts('all', this)">All Products</button>
+                    <button class="hamper-tab-btn" data-filter="magic-mug" onclick="filterProducts('magic-mug', this)">Magic Mugs</button>
+                    <button class="hamper-tab-btn" data-filter="photo-frame" onclick="filterProducts('photo-frame', this)">Photo Frames</button>
+                    <button class="hamper-tab-btn" data-filter="t-shirt" onclick="filterProducts('t-shirt', this)">T-Shirts</button>
+                    <button class="hamper-tab-btn" data-filter="cushion" onclick="filterProducts('cushion', this)">Cushions</button>
+                </div>
+
+                <div class="grid grid-4" id="productGrid"></div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section" id="services">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Our Services</span>
+                    <h2>Complete Gifting Solutions</h2>
+                </div>
+                
+                <div class="grid grid-3" id="serviceGrid"></div>
+            </div>
+        </section>
+
+        <!-- Hamper Builder Section -->
+        <section class="section" id="hamperBuilder" style="border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Hamper Builder</span>
+                    <h2>Build a Luxury Hamper in Minutes</h2>
+                    <p class="text-muted" style="max-width: 720px; margin: var(--spacing-lg) auto 0;">
+                        Select products, add your wishes, choose a theme, and share your hamper instantly on WhatsApp. Designed for a premium, fast checkout experience.
+                    </p>
+                </div>
+
+                <div class="hamper-builder">
+                    <div class="hamper-builder-header">
+                        <div>
+                            <h3 style="margin: 0;">Choose an Occasion</h3>
+                            <p class="text-muted" style="margin-top: 6px;">Birthday & Anniversary builders include live pricing and instant WhatsApp sharing.</p>
+                        </div>
+                        <div class="hamper-tabs" role="tablist" aria-label="Hamper type">
+                            <button class="hamper-tab-btn active" id="hamperTabBirthday" type="button" onclick="setHamperType('birthday', this)">Birthday</button>
+                            <button class="hamper-tab-btn" id="hamperTabAnniversary" type="button" onclick="setHamperType('anniversary', this)">Anniversary</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-2" style="gap: var(--spacing-2xl); align-items: start;">
+                        <div class="card" style="padding: var(--spacing-xl);">
+                            <div class="flex-between" style="margin-bottom: var(--spacing-lg);">
+                                <h4 style="margin: 0;">Add Products</h4>
+                                <div class="text-muted" style="font-size: 0.875rem;"><span id="hamperAvailableCount">0</span> available</div>
+                            </div>
+                            <div class="hamper-products" id="hamperProducts"></div>
+                        </div>
+
+                        <div class="card" style="padding: var(--spacing-xl);">
+                            <div class="flex-between" style="margin-bottom: var(--spacing-lg);">
+                                <h4 style="margin: 0;">Your Hamper</h4>
+                                <div style="display:flex; align-items:center; gap: var(--spacing-md);">
+                                    <span class="text-muted" style="font-size: 0.875rem;">Total</span>
+                                    <strong style="color: var(--accent-primary); font-size: 1.5rem;" id="hamperTotal">₹0</strong>
+                                </div>
+                            </div>
+
+                            <div class="hamper-summary">
+                                <div class="hamper-item-list" id="hamperItems"></div>
+                            </div>
+
+                            <div style="margin-top: var(--spacing-xl);">
+                                <div class="field">
+                                    <textarea id="hamperMessage" class="field-input" rows="3" placeholder=" "></textarea>
+                                    <label class="field-label">Your wishes/message</label>
+                                </div>
+                                <div class="field">
+                                    <textarea id="hamperDeliveryNotes" class="field-input" rows="2" placeholder=" "></textarea>
+                                    <label class="field-label">Delivery notes (optional)</label>
+                                </div>
+                                <div class="grid grid-2" style="gap: var(--spacing-md);">
+                                    <div class="field">
+                                        <select id="hamperTheme" class="field-input">
+                                            <option value="classic">Classic</option>
+                                            <option value="romantic">Romantic</option>
+                                            <option value="vibrant">Vibrant</option>
+                                            <option value="royal">Royal</option>
+                                        </select>
+                                        <label class="field-label">Theme</label>
+                                    </div>
+                                    <div class="field">
+                                        <input id="hamperColor" class="field-input" type="color" value="#ff6b6b" />
+                                        <label class="field-label">Accent color</label>
+                                    </div>
+                                </div>
+
+                                <div style="display:flex; gap: var(--spacing-md); margin-top: var(--spacing-lg); flex-wrap: wrap;">
+                                    <button class="btn btn-ghost" type="button" onclick="resetHamper()">Reset</button>
+                                    <button class="btn btn-secondary" type="button" onclick="shareHamperOnWhatsApp()"><i class="fab fa-whatsapp"></i> Share Hamper</button>
+                                    <button class="btn btn-primary" type="button" onclick="scrollToSection('order')"><i class="fas fa-lock"></i> Continue to Order</button>
+                                </div>
+                                <p class="text-muted" style="margin-top: var(--spacing-md); font-size: 0.875rem;">
+                                    Tip: Sharing sends hamper summary + message to WhatsApp for instant enquiry.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Order Form -->
+        <section class="section" id="order" style="background: rgba(255, 142, 83, 0.03); border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Checkout</span>
+                    <h2>Place Your Order</h2>
+                    <p class="text-muted" style="max-width: 700px; margin: var(--spacing-lg) auto 0;">
+                        A premium, trustworthy order experience with smart validation and WhatsApp confirmation.
+                    </p>
+                </div>
+
+                <div class="grid grid-2" style="gap: var(--spacing-3xl); align-items: start;">
+                    <div class="card" style="padding: var(--spacing-2xl);">
+                        <h3 style="margin-bottom: var(--spacing-lg);">Order Summary</h3>
+                        <div id="orderSummary" class="hamper-item-list"></div>
+                        <div class="hamper-summary" style="margin-top: var(--spacing-lg);">
+                            <div class="flex-between">
+                                <span class="text-muted">Subtotal</span>
+                                <strong id="orderSubtotal">₹0</strong>
+                            </div>
+                            <div class="flex-between" style="margin-top: var(--spacing-sm);">
+                                <span class="text-muted">Delivery</span>
+                                <strong>₹0</strong>
+                            </div>
+                            <div class="flex-between" style="margin-top: var(--spacing-lg);">
+                                <span class="text-muted">Total</span>
+                                <strong style="color: var(--accent-primary); font-size: 1.5rem;" id="orderTotal">₹0</strong>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: var(--spacing-lg);" type="button" onclick="sendOrderToWhatsApp()">
+                            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                        </button>
+                        <p class="text-muted" style="margin-top: var(--spacing-md); font-size: 0.875rem;">
+                            We will confirm design + delivery details on WhatsApp before printing.
+                        </p>
+                    </div>
+
+                    <form class="card" id="orderForm" style="padding: var(--spacing-2xl);">
+                        <h3 style="margin-bottom: var(--spacing-lg);">Customer Details</h3>
+
+                        <div class="grid grid-2" style="gap: var(--spacing-md);">
+                            <div class="field">
+                                <input id="orderFullName" class="field-input" type="text" placeholder=" " required>
+                                <label class="field-label">Full Name</label>
+                            </div>
+                            <div class="field">
+                                <input id="orderMobile" class="field-input" type="tel" placeholder=" " inputmode="numeric" required>
+                                <label class="field-label">Mobile Number</label>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <textarea id="orderAddress" class="field-input" rows="3" placeholder=" " required></textarea>
+                            <label class="field-label">Address</label>
+                        </div>
+
+                        <div class="grid grid-2" style="gap: var(--spacing-md);">
+                            <div class="field">
+                                <input id="orderCity" class="field-input" type="text" placeholder=" " required>
+                                <label class="field-label">City</label>
+                            </div>
+                            <div class="field">
+                                <input id="orderState" class="field-input" type="text" placeholder=" " required>
+                                <label class="field-label">State</label>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-2" style="gap: var(--spacing-md);">
+                            <div class="field">
+                                <input id="orderPincode" class="field-input" type="text" placeholder=" " inputmode="numeric" required>
+                                <label class="field-label">Pincode</label>
+                            </div>
+                            <div class="field">
+                                <input id="orderDeliveryDate" class="field-input" type="date" placeholder=" " required>
+                                <label class="field-label">Delivery Date</label>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <textarea id="orderSpecialMessage" class="field-input" rows="3" placeholder=" "></textarea>
+                            <label class="field-label">Special Message (optional)</label>
+                        </div>
+
+                        <div class="field">
+                            <input id="orderUploadImage" class="field-input" type="file" accept="image/*">
+                            <label class="field-label">Upload Image (optional)</label>
+                            <p class="text-muted" style="margin-top: 8px; font-size: 0.875rem;">If you upload an image, we’ll confirm print quality on WhatsApp.</p>
+                        </div>
+
+                        <p class="form-feedback" id="orderFeedback" style="text-align: center; margin-top: var(--spacing-md);"></p>
+
+                        <button class="btn btn-primary" type="submit" style="width: 100%; margin-top: var(--spacing-lg);">
+                            Place Order (Request Confirmation)
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custom Order Section -->
+        <section class="section" id="customOrder" style="background: rgba(255, 107, 107, 0.03); border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="grid grid-2" style="gap: var(--spacing-3xl); align-items: center;">
+                    <div>
+                        <span class="section-label">Custom Creations</span>
+                        <h2>Your Vision, Our Craft</h2>
+                        <p class="text-muted" style="margin-top: var(--spacing-lg); line-height: 1.8;">Upload your design, tell us your story, and let our expert team bring it to life. From personalized messages to premium packaging, every detail matters.</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); margin-top: var(--spacing-2xl);">
+                            <div>
+                                <div style="font-weight: 700; color: var(--accent-primary);">Step 1</div>
+                                <p class="text-muted" style="font-size: 0.875rem; margin-top: var(--spacing-sm);">Choose & Upload</p>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; color: var(--accent-secondary);">Step 2</div>
+                                <p class="text-muted" style="font-size: 0.875rem; margin-top: var(--spacing-sm);">Review & Approve</p>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; color: var(--accent-tertiary);">Step 3</div>
+                                <p class="text-muted" style="font-size: 0.875rem; margin-top: var(--spacing-sm);">Fast Crafting</p>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; color: var(--accent-gold);">Step 4</div>
+                                <p class="text-muted" style="font-size: 0.875rem; margin-top: var(--spacing-sm);">Doorstep Delivery</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="card" id="customOrderForm" style="padding: var(--spacing-2xl);">
+                        <h3 style="margin-bottom: var(--spacing-lg);">Request Custom Order</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Product Type</label>
+                            <select id="customProduct" class="form-input" required>
+                                <option value="">Choose a product</option>
+                                <option value="Magic Mug">Magic Mug</option>
+                                <option value="Normal Mug">Normal Mug</option>
+                                <option value="Photo Frame">Photo Frame</option>
+                                <option value="Cushion">Cushion</option>
+                                <option value="T-Shirt">T-Shirt</option>
+                                <option value="Phone Case">Phone Case</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Upload Design</label>
+                            <input id="designUpload" type="file" class="form-input" accept="image/*">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Tell Us Your Story</label>
+                            <textarea id="customNotes" class="form-input" rows="4" placeholder="Photo, name, occasion, special message..."></textarea>
+                        </div>
+                        
+                        <button class="btn btn-primary" type="submit" style="width: 100%;">Submit Custom Order</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section" id="reviews">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Customer Testimonials</span>
+                    <h2>Loved by 5000+ Customers</h2>
+                </div>
+                
+                <div class="grid grid-3" id="reviewsGrid"></div>
+                
+                <div class="card" style="margin-top: var(--spacing-2xl); padding: var(--spacing-2xl);">
+                    <h3 style="margin-bottom: var(--spacing-lg); text-align: center;">Share Your Experience</h3>
+                    
+                    <form id="reviewForm" style="max-width: 600px; margin: 0 auto;">
+                        <div class="form-group">
+                            <label class="form-label">Your Name</label>
+                            <input id="reviewName" type="text" class="form-input" placeholder="First & Last Name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Rating</label>
+                            <select id="reviewRating" class="form-input" required>
+                                <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+                                <option value="4">⭐⭐⭐⭐ 4 Stars</option>
+                                <option value="3">⭐⭐⭐ 3 Stars</option>
+                                <option value="2">⭐⭐ 2 Stars</option>
+                                <option value="1">⭐ 1 Star</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Your Review</label>
+                            <textarea id="reviewMessage" class="form-input" rows="4" placeholder="Share your feedback..." required></textarea>
+                        </div>
+                        
+                        <button class="btn btn-primary" type="submit" style="width: 100%;">Post Review</button>
+                        <p class="form-feedback" id="reviewFeedback" style="text-align: center; margin-top: var(--spacing-md);"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instagram Gallery + FAQ -->
+        <section class="section" id="trust" style="border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Trust & Social Proof</span>
+                    <h2>Real Gifts. Real Reactions.</h2>
+                    <p class="text-muted" style="max-width: 700px; margin: var(--spacing-lg) auto 0;">
+                        A premium gifting experience backed by fast delivery, quality checks, and customer-first support.
+                    </p>
+                </div>
+
+                <div class="grid grid-2" style="gap: var(--spacing-3xl); align-items: start;">
+                    <div>
+                        <h3 style="margin-bottom: var(--spacing-lg);">Instagram Gallery</h3>
+                        <div class="grid grid-3">
+                            <div class="card" style="padding: 0; overflow: hidden;"><img loading="lazy" src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=600&q=80" alt="BOJ gift photo"></div>
+                            <div class="card" style="padding: 0; overflow: hidden;"><img loading="lazy" src="https://images.unsplash.com/photo-1514228742587-6b1558fcf93a?auto=format&fit=crop&w=600&q=80" alt="BOJ mug photo"></div>
+                            <div class="card" style="padding: 0; overflow: hidden;"><img loading="lazy" src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=600&q=80" alt="BOJ gift set photo"></div>
+                        </div>
+                        <p class="text-muted" style="margin-top: var(--spacing-lg);">
+                            Want your photo featured? Share your BOJ unboxing on Instagram and tag us.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 style="margin-bottom: var(--spacing-lg);">FAQ</h3>
+                        <div class="card" style="padding: var(--spacing-xl);">
+                            <details class="faq-item" open>
+                                <summary>How does customization work?</summary>
+                                <p class="text-muted">Choose products, share your design/photo/message, and we confirm the final preview on WhatsApp before printing.</p>
+                            </details>
+                            <details class="faq-item">
+                                <summary>What is the delivery timeline?</summary>
+                                <p class="text-muted">Most orders ship within 24–48 hours. Express delivery depends on your city and pincode.</p>
+                            </details>
+                            <details class="faq-item">
+                                <summary>Can I change the hamper items after ordering?</summary>
+                                <p class="text-muted">Yes, as long as production has not started. Message us on WhatsApp with your order details.</p>
+                            </details>
+                            <details class="faq-item">
+                                <summary>Do you support bulk/corporate gifting?</summary>
+                                <p class="text-muted">Absolutely. We offer logo printing, custom packaging, and bulk pricing for corporate orders.</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact" style="background: rgba(255, 142, 83, 0.03); border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Get in Touch</span>
+                    <h2>We're Here to Help</h2>
+                </div>
+                
+                <div class="grid grid-2" style="gap: var(--spacing-3xl);">
+                    <div class="card">
+                        <h3 style="margin-bottom: var(--spacing-lg);">Contact Information</h3>
+                        <p class="text-muted" style="margin-bottom: var(--spacing-2xl);">Reach out to our team for custom orders, bulk inquiries, or general support.</p>
+                        
+                        <div style="display: flex; flex-direction: column; gap: var(--spacing-lg);">
+                            <div class="flex">
+                                <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(255, 107, 107, 0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <i class="fas fa-envelope" style="color: var(--accent-primary);"></i>
+                                </div>
+                                <div>
+                                    <p class="text-light" style="font-size: 0.875rem;">Email</p>
+                                    <strong style="color: var(--text-primary);">support@bojgifts.com</strong>
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(255, 142, 83, 0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <i class="fab fa-whatsapp" style="color: #25d366;"></i>
+                                </div>
+                                <div>
+                                    <p class="text-light" style="font-size: 0.875rem;">WhatsApp</p>
+                                    <strong style="color: var(--text-primary);">+1 925 536 0036</strong>
+                                </div>
+                            </div>
+                            
+                            <div class="flex">
+                                <div style="width: 40px; height: 40px; border-radius: 10px; background: rgba(255, 209, 102, 0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <i class="fas fa-map-marker-alt" style="color: var(--accent-tertiary);"></i>
+                                </div>
+                                <div>
+                                    <p class="text-light" style="font-size: 0.875rem;">Address</p>
+                                    <strong style="color: var(--text-primary);">123 Gift Street, New York, NY</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="card" id="contactForm">
+                        <h3 style="margin-bottom: var(--spacing-lg);">Send us a Message</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input id="contactName" type="text" class="form-input" placeholder="Your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input id="contactEmail" type="email" class="form-input" placeholder="you@example.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea id="contactMessage" class="form-input" rows="4" placeholder="Your message..."></textarea>
+                        </div>
+                        
+                        <button class="btn btn-primary" type="submit" style="width: 100%;">Send Message</button>
+                        <p class="form-feedback" id="contactFeedback" style="text-align: center; margin-top: var(--spacing-md);"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h4 style="color: var(--accent-primary);">BOJ</h4>
+                    <p class="text-muted" style="margin-top: var(--spacing-md); font-size: 0.875rem;">Premium customized gifts for every celebration. Handcrafted excellence meets digital precision.</p>
+                </div>
+                
+                <div>
+                    <h4>Quick Links</h4>
+                    <a href="#featured" onclick="scrollToSection('featured'); return false;">Products</a>
+                    <a href="#services" onclick="scrollToSection('services'); return false;">Services</a>
+                    <a href="#customOrder" onclick="scrollToSection('customOrder'); return false;">Custom Order</a>
+                    <a href="admin.html">Admin</a>
+                </div>
+                
+                <div>
+                    <h4>Support</h4>
+                    <a href="#contact" onclick="scrollToSection('contact'); return false;">Contact</a>
+                    <a href="#reviews" onclick="scrollToSection('reviews'); return false;">Reviews</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                
+                <div>
+                    <h4>Follow Us</h4>
+                    <div class="footer-socials">
+                        <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 BOJ - Box of Joy. All rights reserved. | Crafted with 💝</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Drawer -->
+    <div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+        <div class="drawer-panel">
+            <div style="padding: var(--spacing-xl); border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                <h3>Shopping Cart</h3>
+                <button class="icon-btn" onclick="toggleCart()" aria-label="Close cart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div id="cartItems" style="flex: 1; overflow-y: auto; padding: var(--spacing-lg);">
+                <p class="text-muted" style="text-align: center; padding: var(--spacing-2xl) 0;">Your cart is empty</p>
+            </div>
+            
+            <div style="padding: var(--spacing-xl); border-top: 1px solid var(--border-color);">
+                <div class="flex-between" style="margin-bottom: var(--spacing-lg);">
+                    <strong>Total:</strong>
+                    <strong style="font-size: 1.5rem; color: var(--accent-primary);" id="cartTotal">$0.00</strong>
+                </div>
+                <button class="btn btn-primary" onclick="checkout()" style="width: 100%;">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="drawerOverlay" onclick="toggleCart()"></div>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/19255360036?text=Hi,%20I'm%20interested%20in%20your%20premium%20gifts!" target="_blank" class="whatsapp-btn" id="whatsappBtn" aria-label="Contact on WhatsApp" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
